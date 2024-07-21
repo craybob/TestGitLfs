@@ -1,1 +1,1 @@
-C:\Users\Altan\Documents\GitHub\TestGitLfs\My project
+F:\Github\Repositories\TestGitLfs\My project
