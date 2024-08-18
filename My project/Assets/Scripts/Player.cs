@@ -1,26 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
-public class Player: MonoBehaviour, ITickable
+public class Player: MonoBehaviour, ITickable, Zenject.IInitializable
 {
-    private MovementHandler _movementHandler;
 
     [Inject]
-    public void Construct(MovementHandler movementHandler){
-        _movementHandler = movementHandler;
+    private MovementHandler _movementHandler;
+
+    [SerializeField] public GameObject anotherObj;
+
+    //[Inject]
+    //private void Construct(MovementHandler movementHandler){
+    //    _movementHandler = movementHandler;
+    //}
+
+    private void Start()
+    {
+        _movementHandler.transformObj = transform;
+        _movementHandler.speed = 5f;
     }
-    private void Start(){
-        _movementHandler.player = transform;
-        _movementHandler.speed = 15f;
+    public void Initialize(){
+        
+
     }
-    private void Update(){
-         _movementHandler.Move();
+    void ITickable.Tick()
+    {
+        //_movementHandler.Move();
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    _container.InstantiatePrefab(anotherObj);
+        //}
     }
-    public void Tick()
+    private void Update()
     {
         _movementHandler.Move();
+        //_movementHandler.Move();
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    _container.InstantiatePrefab(anotherObj);
+        //}
     }
+
 }

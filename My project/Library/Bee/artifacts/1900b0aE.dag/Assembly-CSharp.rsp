@@ -382,7 +382,9 @@
 "Assets/Mini Simple Characters Skeleton Demo/Readme/Scripts/Readme.cs"
 "Assets/Rabbits/Demo/Scripts/AnimatorParamatersChange.cs"
 "Assets/Scripts/GameInstaller.cs"
+"Assets/Scripts/IMovable.cs"
 "Assets/Scripts/MovementHandler.cs"
+"Assets/Scripts/NewGameInstaller.cs"
 "Assets/Scripts/Player.cs"
 -langversion:9.0
 /deterministic

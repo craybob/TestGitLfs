@@ -3,23 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class MovementHandler : ITickable, IInitializable
+public class MovementHandler 
 {
-    public Transform player;
     public float speed;
-    public void Initialize()
-    {
-        throw new System.NotImplementedException();
-    }
+    public Transform transformObj;
 
-    public void Tick()
-    {
-        
-    }
-
+    
     public void Move(){
         Vector3 moveDirection = GetMoveDirection();
-        player.Translate(moveDirection , Space.World);
+        transformObj.Translate(moveDirection , Space.World);
         Debug.Log("is Working");
     }
     
