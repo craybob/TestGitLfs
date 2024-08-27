@@ -6,44 +6,35 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
-public class Player: MonoBehaviour, ITickable, Zenject.IInitializable
+public class Player: MonoBehaviour
 {
-
-    [Inject]
     private MovementHandler _movementHandler;
 
-    [SerializeField] public GameObject anotherObj;
+    
+    [SerializeField] public float _jumpForce = 1f;
 
-    //[Inject]
-    //private void Construct(MovementHandler movementHandler){
-    //    _movementHandler = movementHandler;
-    //}
+    [Inject]
+    private void Construct(MovementHandler movementHandler)
+    {
+        _movementHandler = movementHandler;
+    }
 
     private void Start()
     {
+        _movementHandler.rb = GetComponent<Rigidbody>();
         _movementHandler.transformObj = transform;
         _movementHandler.speed = 5f;
+        _movementHandler.jumpForce = _jumpForce;
     }
-    public void Initialize(){
-        
-
-    }
-    void ITickable.Tick()
-    {
-        //_movementHandler.Move();
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    _container.InstantiatePrefab(anotherObj);
-        //}
-    }
+    
     private void Update()
     {
-        _movementHandler.Move();
-        //_movementHandler.Move();
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    _container.InstantiatePrefab(anotherObj);
-        //}
+        MoveMethods();
     }
 
+    private void MoveMethods()
+    {
+        _movementHandler.Move();
+        _movementHandler.Jump();
+    }
 }
