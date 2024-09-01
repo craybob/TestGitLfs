@@ -856,7 +856,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0ab56fe3d72398f41a022fa1ce560124, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -963,9 +963,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 491901796199160399, guid: 3f82e27c5d7e68f4db5ab1c4d964c2e0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 491901796199160399, guid: 3f82e27c5d7e68f4db5ab1c4d964c2e0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 69ce5dd747afb75488c00ed0f554f1d6, type: 2}
+    - target: {fileID: 491901796199160399, guid: 3f82e27c5d7e68f4db5ab1c4d964c2e0, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966617708095170042, guid: 3f82e27c5d7e68f4db5ab1c4d964c2e0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1966617708095170042, guid: 3f82e27c5d7e68f4db5ab1c4d964c2e0, type: 3}
       propertyPath: _jumpForce
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1966617708095170042, guid: 3f82e27c5d7e68f4db5ab1c4d964c2e0, type: 3}
       propertyPath: anotherObj
