@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 public class MovementHandler 
 {
@@ -8,12 +8,21 @@ public class MovementHandler
 
     public Rigidbody rb;
     public float jumpForce = 5f;
+    public bool onGround = true;
 
+    public Animator animator;
+
+    public AnimationClip jumpAnimClip;
     
     public void Move(){
+        
+
         Vector3 moveDirection = GetMoveDirection();
-        transformObj.Translate(moveDirection * Time.deltaTime , Space.World);
-        Debug.Log("is Working");
+        bool isMove = moveDirection == Vector3.zero ? false : true;
+        animator.SetBool("Move", isMove);
+
+        if(isMove)
+            transformObj.Translate(moveDirection * speed * Time.deltaTime , Space.World);
     }
     public void Jump()
     {
@@ -21,16 +30,39 @@ public class MovementHandler
 
         if (jump)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            PauseAnimationOfJump(1.05f);
         }
     }
-    
+    public void PhysJump()
+    {
+        Debug.Log("realJump");
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+
+    private void PauseAnimationOfJump(float pauseTime)
+    {
+        float animationLengthInMilliseconds = jumpAnimClip.length * 1000;
+        
+        // –ассчитываем normalizedTime
+        float normalizedTime = pauseTime / animationLengthInMilliseconds;
+
+        // ”станавливаем анимацию в нужное место и приостанавливаем ее
+        animator.Play(jumpAnimClip.name, -1, normalizedTime);
+    }
+
+    public void ResumeJumpAnim()
+    {
+        animator.Play(jumpAnimClip.name);
+    }
+
+
     private Vector3 GetMoveDirection(){
         float xDirertion = Input.GetAxis("Horizontal");
         float zDirection = Input.GetAxis("Vertical");
-        Vector3 moveDirection = GetCamRotation(zDirection, xDirertion);//new Vector3(xDirertion * speed, 0f, zDirection * speed);
+        Vector3 moveDirection = GetCamRotation(zDirection, xDirertion);
 
         return moveDirection;
+
     }
 
     private Vector3 GetCamRotation(float directionZ, float directionX)
